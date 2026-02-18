@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color: #0a0a0a;
+  --text-color: #f0f0f0;
+  --primary-color: #00f3ff; /* Neon Cyan */
+  --secondary-color: #bc13fe; /* Neon Purple */
+  --tertiary-color: #4d4dff; /* Electric Blue */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --font-main: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* Hardware acceleration for smoother animations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  /* Hide scrollbar for cinematic feel, or customize it */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--bg-color);
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Utility Animations */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px var(--primary-color);
+  }
+  50% {
+    text-shadow:
+      0 0 20px var(--primary-color),
+      0 0 30px var(--secondary-color);
+  }
+  100% {
+    text-shadow: 0 0 5px var(--primary-color);
+  }
+}
+
+.glow-text {
+  animation: glow 3s infinite alternate;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 3D Transform Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.translate-z-10 {
+  transform: translateZ(10px);
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee linear infinite;
+}
+
+/* Typography Defaults */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+/* Loading Screen - Removed as we now use LoadingScreen.tsx with Framer Motion */
+
+/* App Container Transitions */
+.app-container {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.app-container.visible {
+  opacity: 1;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 1rem; /* Less top padding on mobile */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%; /* Wider on mobile */
+  max-width: 1200px;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.2rem; /* Slightly smaller logo */
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.nav-links a {
+  margin-left: 1rem; /* Reduced margin */
+  font-size: 0.75rem; /* Smaller font on mobile */
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  opacity: 0.8;
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+  .navbar {
+    top: 2rem;
+    width: 90%;
+    padding: 1rem 2rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .nav-links a {
+    margin-left: 2rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.1rem;
+  }
+}
+
+.nav-links a:hover {
+  opacity: 1;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-color);
+}
