@@ -4,11 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "var(--primary-color)",
-        secondary: "var(--secondary-color)",
-        tertiary: "var(--tertiary-color)",
-        "bg-color": "var(--bg-color)",
-        "text-color": "var(--text-color)",
+        bg: "var(--bg-color)",
+        text: "var(--text-color)",
+        muted: "var(--text-muted)",
+        pink: "var(--accent-pink)",
+        maroon: "var(--accent-maroon)",
+        blue: "var(--accent-blue)",
+        red: "var(--accent-red)",
+      },
+      fontFamily: {
+        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
       },
     },
   },

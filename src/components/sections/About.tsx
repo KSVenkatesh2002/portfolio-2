@@ -30,7 +30,7 @@ const About = () => {
       id="about"
       className="relative w-full min-h-screen py-20 flex items-center justify-center overflow-hidden"
     >
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-center max-w-6xl">
         {/* Text Content */}
         <motion.div
           className="z-10"
@@ -41,17 +41,16 @@ const About = () => {
         >
           <motion.h2
             variants={textVariants as any}
-            className="text-4xl font-bold mb-6 glow-text text-primary"
-            style={{ color: "var(--primary-color)" }}
+            className="text-5xl font-black mb-8 text-slate-900 tracking-tight"
           >
-            ABOUT ME
+            ABOUT <span className="text-pink">ME</span>
           </motion.h2>
 
           <motion.div
             variants={textVariants as any}
-            className="glass-panel p-6 mb-6"
+            className="glass-panel p-8 mb-10 border-l-4 border-l-blue"
           >
-            <p className="text-lg leading-relaxed mb-4 text-gray-300">
+            <p className="text-lg leading-relaxed text-slate-700 font-medium">
               MERN Stack Developer with hands-on experience building full-stack
               web applications using React, Next.js, Node.js, Express, and
               MongoDB. Skilled in designing REST APIs, authentication systems,
@@ -60,48 +59,54 @@ const About = () => {
             </p>
           </motion.div>
 
-          <motion.div variants={textVariants as any} className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-4">Experience</h3>
+          <motion.div variants={textVariants as any} className="space-y-8">
+            <h3 className="text-3xl font-bold text-slate-900 mb-6">
+              Experience
+            </h3>
 
             {/* Current Role */}
-            <div className="border-l-4 border-cyan-400 pl-4">
-              <h4 className="text-xl font-bold text-white">
+            <div className="border-l-4 border-pink pl-6 relative">
+              <div className="absolute w-3 h-3 bg-pink rounded-full -left-[8px] top-1"></div>
+              <h4 className="text-xl font-bold text-slate-900">
                 Engineer – Web Apps
               </h4>
-              <p className="text-cyan-400 font-semibold">
-                FUEiNT Technologies, #12, Sri Vigneshwara Nagar, Amman Kovil,
-                Saravanampatti, Coimbatore – 641035, Tamil Nadu.
+              <p className="text-pink font-semibold mt-1">
+                FUEiNT Technologies, Coimbatore
               </p>
-              <p className="text-sm text-gray-400 mb-2">Mar 2026 – Present</p>
-              <p className="text-gray-300 text-sm">
+              <p className="text-sm text-slate-500 mb-2 font-medium">
+                Mar 2026 – Present
+              </p>
+              <p className="text-slate-600">
                 Full Stack Developer role focused on building scalable web
                 applications.
               </p>
             </div>
 
             {/* Previous Roles */}
-            <div className="border-l-4 border-purple-500 pl-4">
-              <h4 className="text-lg font-bold text-white">
+            <div className="border-l-4 border-blue pl-6 relative">
+              <div className="absolute w-3 h-3 bg-blue rounded-full -left-[8px] top-1"></div>
+              <h4 className="text-xl font-bold text-slate-900">
                 Frontend Developer
               </h4>
-              <p className="text-purple-400 font-semibold">CTSV Solution</p>
-              <p className="text-sm text-gray-400 mb-2">
+              <p className="text-blue font-semibold mt-1">CTSV Solution</p>
+              <p className="text-sm text-slate-500 mb-2 font-medium">
                 Feb 2026 – Mar 2026 (1 Month)
               </p>
-              <p className="text-gray-300 text-sm">
+              <p className="text-slate-600">
                 Worked on frontend optimizations and feature integration.
               </p>
             </div>
 
-            <div className="border-l-4 border-purple-500/50 pl-4">
-              <h4 className="text-lg font-bold text-gray-200">
+            <div className="border-l-4 border-maroon pl-6 relative">
+              <div className="absolute w-3 h-3 bg-maroon rounded-full -left-[8px] top-1"></div>
+              <h4 className="text-xl font-bold text-slate-900">
                 Next.js Frontend Intern
               </h4>
-              <p className="text-purple-400/80 font-semibold">CTSV Solution</p>
-              <p className="text-sm text-gray-500 mb-2">
-                Nov 2025 – Feb 2026 (3 Month)
+              <p className="text-maroon font-semibold mt-1">CTSV Solution</p>
+              <p className="text-sm text-slate-500 mb-2 font-medium">
+                Nov 2025 – Feb 2026 (3 Months)
               </p>
-              <ul className="list-disc list-inside text-gray-400 text-sm space-y-1">
+              <ul className="list-disc list-inside text-slate-600 space-y-1">
                 <li>Developed components using Next.js and React</li>
                 <li>Integrated REST APIs & Auth</li>
               </ul>
@@ -110,7 +115,7 @@ const About = () => {
         </motion.div>
 
         {/* 3D Content */}
-        <div className="h-[400px] w-full relative z-0">
+        <div className="h-[500px] w-full relative z-0">
           <About3D />
         </div>
       </div>

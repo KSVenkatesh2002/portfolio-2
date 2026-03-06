@@ -43,13 +43,11 @@ const ProjectCard = ({
     const cY = clientY - top; // Cursor Y relative to card
 
     // Calculate rotation range: -15deg to +15deg
-    // X position affects Y rotation (left/right)
-    // Y position affects X rotation (up/down) - inverted
     const xPct = cX / width - 0.5;
     const yPct = cY / height - 0.5;
 
-    x.set(xPct * 20); // RotateY
-    y.set(yPct * -20); // RotateX
+    x.set(xPct * 10); // Subtle rotation for light theme
+    y.set(yPct * -10);
 
     // Spotlight update
     mouseX.set(cX);
@@ -60,7 +58,6 @@ const ProjectCard = ({
     // Smooth spring reset
     x.set(0);
     y.set(0);
-    // Removed auto-close: setShowIframe(false);
   }
 
   // --- Iframe Preview Logic ---
@@ -72,14 +69,14 @@ const ProjectCard = ({
   }, []);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const maskImage = useMotionTemplate`radial-gradient(300px at ${mouseX}px ${mouseY}px, white, transparent)`;
+  const maskImage = useMotionTemplate`radial-gradient(350px at ${mouseX}px ${mouseY}px, white, transparent)`;
   const style = { maskImage, WebkitMaskImage: maskImage };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.2 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
       className="perspective-1000 w-full h-[400px]" // Fixed height for consistency
     >
@@ -91,14 +88,14 @@ const ProjectCard = ({
           rotateY,
           transformStyle: "preserve-3d",
         }}
-        className="relative w-full h-full bg-black/40 border border-white/10 rounded-2xl backdrop-blur-md transition-all duration-300 group"
+        className="relative w-full h-full bg-white/70 border border-slate-200 shadow-xl rounded-2xl backdrop-blur-md transition-all duration-300 group hover:shadow-2xl hover:border-pink/30"
       >
-        {/* Neon Border Glow (Spotlight) */}
+        {/* Colorful Border Glow (Spotlight) */}
         <motion.div
           className="absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none"
           style={style}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 rounded-2xl" />
+          <div className="absolute inset-0 bg-gradient-to-br from-pink/40 via-maroon/20 to-blue/40 rounded-2xl" />
         </motion.div>
 
         {/* Content Container */}
@@ -106,18 +103,26 @@ const ProjectCard = ({
           {/* Header: Title & Tech */}
           <div className="flex justify-between items-start mb-4 transform-style-3d">
             <div style={{ transform: "translateZ(30px)" }}>
-              <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+              <h3 className="text-2xl font-black text-slate-900 mb-2 group-hover:text-blue transition-colors">
                 {title}
               </h3>
               <div className="flex flex-wrap gap-2">
-                {tags.slice(0, 3).map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                {tags.slice(0, 3).map((tag, i) => {
+                  const colors = [
+                    "bg-pink/10 text-pink border-pink/20",
+                    "bg-blue/10 text-blue border-blue/20",
+                    "bg-maroon/10 text-maroon border-maroon/20",
+                  ];
+                  const colorClass = colors[i % colors.length];
+                  return (
+                    <span
+                      key={tag}
+                      className={`text-[10px] uppercase font-bold px-3 py-1 rounded-full border ${colorClass}`}
+                    >
+                      {tag}
+                    </span>
+                  );
+                })}
               </div>
             </div>
 
@@ -128,7 +133,7 @@ const ProjectCard = ({
                   e.stopPropagation();
                   setShowIframe(!showIframe);
                 }}
-                className="p-2 rounded-full bg-white/5 hover:bg-cyan-500 hover:text-black text-white transition-all transform hover:scale-110"
+                className="p-3 rounded-full bg-slate-100 border border-slate-200 hover:bg-pink hover:text-white hover:border-pink text-slate-600 transition-all transform hover:scale-110 shadow-sm"
                 style={{ transform: "translateZ(40px)" }}
                 title={showIframe ? "Close Preview" : "Live Preview"}
               >
@@ -139,42 +144,42 @@ const ProjectCard = ({
 
           {/* Description or Iframe Area */}
           <div
-            className="flex-grow relative rounded-xl overflow-hidden bg-white border border-white/5 transition-all duration-500"
+            className="flex-grow relative rounded-xl overflow-hidden bg-slate-50 border border-slate-200 transition-all duration-500 shadow-inner"
             style={{ transform: "translateZ(20px)" }}
           >
             {showIframe ? (
               <div className="w-full h-full relative group/iframe">
                 <iframe
                   src={links.live}
-                  className="w-full h-full relative z-10"
+                  className="w-full h-full relative z-10 bg-white"
                   title={`${title} Preview`}
                   sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                   loading="lazy"
                 />
-                {/* Fallback/Error Tip - Visible if iframe fails or is blocked (hard to detect cross-origin, but provides UI hint) */}
+                {/* Fallback/Error Tip */}
                 <div className="absolute top-2 right-2 z-20 pointer-events-none opacity-0 group-hover/iframe:opacity-100 transition-opacity">
-                  <span className="text-[10px] bg-black/80 text-white px-2 py-1 rounded">
+                  <span className="text-[10px] bg-slate-800 text-white font-medium px-2 py-1 rounded shadow-md border border-slate-700">
                     Interaction Enabled
                   </span>
                 </div>
               </div>
             ) : (
-              <div className="p-4 h-full flex flex-col justify-between bg-black/90 backdrop-blur-md">
-                <p className="text-gray-400 text-sm leading-relaxed">
+              <div className="p-5 h-full flex flex-col justify-between bg-white text-slate-600">
+                <p className="text-sm font-medium leading-relaxed">
                   {description}
                 </p>
-                <div className="mt-4 pt-4 border-t border-white/10 flex gap-4 justify-end">
+                <div className="mt-4 pt-4 border-t border-slate-100 flex gap-4 justify-end">
                   <a
                     href={links.github}
                     target="_blank"
-                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                    className="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors bg-slate-100 px-3 py-1.5 rounded-lg hover:bg-slate-200"
                   >
                     <FaGithub /> Source
                   </a>
                   <a
                     href={links.live}
                     target="_blank"
-                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-400 transition-colors"
+                    className="flex items-center gap-2 text-sm font-semibold text-white transition-colors bg-blue px-3 py-1.5 rounded-lg hover:bg-blue-600 shadow-sm"
                   >
                     <FaExternalLinkAlt /> Visit Site
                   </a>
@@ -183,9 +188,6 @@ const ProjectCard = ({
             )}
           </div>
         </div>
-
-        {/* Ambient Glow behind card */}
-        <div className="absolute inset-0 bg-cyan-500/5 blur-3xl -z-10 rounded-2xl group-hover:bg-cyan-500/10 transition-colors duration-500" />
       </motion.div>
     </motion.div>
   );

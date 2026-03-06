@@ -41,13 +41,10 @@ const Skills = () => {
         viewport={{ once: true }}
         className="text-center mb-10 z-10"
       >
-        <h2
-          className="text-4xl md:text-5xl font-bold glow-text mb-1"
-          style={{ color: "var(--primary-color)" }}
-        >
-          TECHNICAL SKILLS
+        <h2 className="text-5xl md:text-7xl font-black mb-1 text-slate-900 tracking-tighter">
+          TECHNICAL <span className="text-pink">SKILLS</span>
         </h2>
-        <p className="text-gray-400 max-w-2xl mx-auto px-4">
+        <p className="text-slate-500 font-medium max-w-2xl mx-auto px-4 mt-2">
           Interactive 3D Visualization & Comprehensive Expertise
         </p>
       </motion.div>
@@ -55,80 +52,98 @@ const Skills = () => {
       {/* 3D Canvas Area */}
       <div className="w-full h-[500px] md:h-[600px] relative z-0 mb-12">
         <Skills3D />
-        <div className="absolute bottom-4 left-0 right-0 text-center text-gray-500 text-sm pointer-events-none">
+        <div className="absolute bottom-4 left-0 right-0 text-center text-slate-400 font-medium text-sm pointer-events-none">
           <p>Drag to rotate • Hover to explore</p>
         </div>
       </div>
 
       {/* Detailed Category View */}
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {skillCategories.map((category, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{
-                scale: 1.05,
-                rotateY: 5,
-                rotateX: 5,
-                z: 50,
-              }}
-              className="group perspective-1000"
-            >
-              <div className="relative h-96 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-xl p-6 rounded-2xl border border-white/10 overflow-hidden transform-style-3d transition-all duration-500 hover:shadow-[0_0_50px_rgba(8,145,178,0.3)] group-hover:border-cyan-500/50">
-                {/* Floating Glow Orbs */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/20 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2 group-hover:bg-cyan-400/30 transition-colors duration-500"></div>
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/20 rounded-full blur-[50px] translate-y-1/2 -translate-x-1/2 group-hover:bg-purple-400/30 transition-colors duration-500"></div>
+          {skillCategories.map((category, index) => {
+            const colors = [
+              "from-pink to-maroon",
+              "from-blue to-purple-500",
+              "from-maroon to-red-500",
+              "from-blue-400 to-pink",
+            ];
+            const borderColorClass = [
+              "group-hover:border-pink/50",
+              "group-hover:border-blue/50",
+              "group-hover:border-maroon/50",
+              "group-hover:border-purple-400/50",
+            ];
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                whileHover={{
+                  scale: 1.05,
+                  rotateY: 5,
+                  rotateX: 5,
+                  z: 50,
+                }}
+                className="group perspective-1000"
+              >
+                <div
+                  className={`relative h-96 bg-white/70 backdrop-blur-xl p-6 rounded-2xl border border-slate-200 overflow-hidden shadow-lg transform-style-3d transition-all duration-500 hover:shadow-2xl ${borderColorClass[index % 4]}`}
+                >
+                  {/* Floating Glow Orbs */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-pink/10 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2 group-hover:bg-pink/20 transition-colors duration-500"></div>
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue/10 rounded-full blur-[50px] translate-y-1/2 -translate-x-1/2 group-hover:bg-blue/20 transition-colors duration-500"></div>
 
-                {/* Header */}
-                <div className="relative z-10 mb-8 transform-style-3d group-hover:translate-z-10 transition-transform duration-500">
-                  <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 mb-2">
-                    {category.title}
-                  </h3>
-                  <div className="h-1 w-12 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full group-hover:w-full transition-all duration-500"></div>
-                </div>
-
-                {/* Skills Container */}
-                <div className="relative z-10 flex flex-col gap-3 transform-style-3d">
-                  {category.skills.map((skill, idx) => (
+                  {/* Header */}
+                  <div className="relative z-10 mb-8 transform-style-3d group-hover:translate-z-10 transition-transform duration-500">
+                    <h3 className="text-2xl font-black text-slate-900 mb-2">
+                      {category.title}
+                    </h3>
                     <div
-                      key={idx}
-                      className="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-all group/item transform-style-3d hover:translate-x-2 duration-300"
-                    >
-                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-500/50 group-hover/item:bg-cyan-400 group-hover/item:shadow-[0_0_8px_#22d3ee] transition-all"></div>
-                      <span className="text-gray-400 group-hover/item:text-white font-medium tracking-wide text-sm">
-                        {skill}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                      className={`h-1 w-12 bg-gradient-to-r ${colors[index % 4]} rounded-full group-hover:w-full transition-all duration-500`}
+                    ></div>
+                  </div>
 
-                {/* Tech Code Background Effect */}
-                <div className="absolute inset-0 opacity-5 pointer-events-none overflow-hidden">
-                  {[...Array(5)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute text-[10px] text-cyan-500 font-mono whitespace-nowrap animate-marquee"
-                      style={{
-                        top: `${20 + i * 15}%`,
-                        left: 0,
-                        animationDuration: `${10 + i * 2}s`,
-                        opacity: 0.5,
-                      }}
-                    >
-                      {Array(10)
-                        .fill(
-                          `import { ${category.skills[i % category.skills.length]} } from 'tech'; `,
-                        )
-                        .join("")}
-                    </div>
-                  ))}
+                  {/* Skills Container */}
+                  <div className="relative z-10 flex flex-col gap-3 transform-style-3d">
+                    {category.skills.map((skill, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 transition-all group/item transform-style-3d hover:translate-x-2 duration-300"
+                      >
+                        <div className="w-2 h-2 rounded-full bg-slate-300 group-hover/item:bg-blue transition-all"></div>
+                        <span className="text-slate-600 font-semibold group-hover/item:text-slate-900 tracking-wide text-sm">
+                          {skill}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Tech Code Background Effect */}
+                  <div className="absolute inset-0 opacity-5 pointer-events-none overflow-hidden">
+                    {[...Array(5)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute text-[10px] text-slate-800 font-mono whitespace-nowrap animate-marquee"
+                        style={{
+                          top: `${20 + i * 15}%`,
+                          left: 0,
+                          animationDuration: `${10 + i * 2}s`,
+                          opacity: 0.2,
+                        }}
+                      >
+                        {Array(10)
+                          .fill(
+                            `import { ${category.skills[i % category.skills.length]} } from 'tech'; `,
+                          )
+                          .join("")}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

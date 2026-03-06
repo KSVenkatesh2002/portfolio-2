@@ -29,7 +29,7 @@ const Education = () => {
 
   return (
     <section id="education" className="py-20 relative overflow-hidden">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-6xl">
         {/* EDUCATION */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -37,16 +37,16 @@ const Education = () => {
           viewport={{ once: true }}
           className="mb-20"
         >
-          <div className="flex items-center gap-4 mb-8 justify-center md:justify-start">
-            <FaGraduationCap className="text-4xl text-cyan-400" />
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+          <div className="flex items-center gap-4 mb-12 justify-center md:justify-start">
+            <FaGraduationCap className="text-5xl text-blue" />
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter">
               EDUCATION
             </h2>
           </div>
 
           <div className="relative max-w-4xl mx-auto">
             {/* Timeline Line */}
-            <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-cyan-500 via-purple-500 to-transparent"></div>
+            <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[3px] bg-gradient-to-b from-blue via-pink to-transparent rounded-full shadow-sm"></div>
 
             {/* Degree */}
             <motion.div
@@ -55,19 +55,19 @@ const Education = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="relative flex flex-col md:flex-row gap-8 mb-12"
             >
-              <div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 w-4 h-4 bg-cyan-500 rounded-full shadow-[0_0_10px_#06b6d4] z-10 mt-6"></div>
+              <div className="absolute left-[20px] md:left-1/2 -translate-x-[7px] w-5 h-5 bg-blue rounded-full ring-4 ring-white shadow-md z-10 mt-6 md:translate-x-[-10px]"></div>
 
-              <div className="ml-12 md:ml-0 md:w-1/2 md:pr-12 md:text-right">
-                <div className="glass-panel p-6 border border-cyan-500/30 hover:border-cyan-500/50 transition-all duration-300 group">
-                  <h3 className="text-xl font-bold text-cyan-300 mb-1 group-hover:text-cyan-200 transition-colors">
+              <div className="ml-12 md:ml-0 md:w-1/2 md:pr-14 md:text-right">
+                <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-md hover:shadow-xl hover:border-blue/50 transition-all duration-300 group">
+                  <h3 className="text-2xl font-black text-slate-900 mb-2 group-hover:text-blue transition-colors">
                     {educationData.degree}
                   </h3>
-                  <p className="text-gray-300 text-sm mb-3">
+                  <p className="text-slate-600 font-medium mb-4">
                     {educationData.college}
                   </p>
-                  <div className="inline-flex items-center gap-4 text-xs font-mono text-cyan-400/80 bg-cyan-900/20 px-3 py-1 rounded-full">
+                  <div className="inline-flex items-center gap-4 text-xs font-bold text-blue bg-blue/10 px-4 py-2 rounded-full border border-blue/20">
                     <span>GPA: {educationData.gpa}</span>
-                    <span>•</span>
+                    <span className="opacity-50">•</span>
                     <span>2021 - 2025</span>
                   </div>
                 </div>
@@ -82,21 +82,21 @@ const Education = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="relative flex flex-col md:flex-row gap-8 mb-12"
             >
-              <div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 w-4 h-4 bg-purple-500 rounded-full shadow-[0_0_10px_#a855f7] z-10 mt-6"></div>
+              <div className="absolute left-[20px] md:left-1/2 -translate-x-[7px] w-5 h-5 bg-pink rounded-full ring-4 ring-white shadow-md z-10 mt-6 md:translate-x-[-10px]"></div>
 
               <div className="hidden md:block md:w-1/2"></div>
-              <div className="ml-12 md:ml-0 md:w-1/2 md:pl-12">
-                <div className="glass-panel p-6 border border-purple-500/30 hover:border-purple-500/50 transition-all duration-300 group">
-                  <h3 className="text-xl font-bold text-purple-300 mb-1 group-hover:text-purple-200 transition-colors">
+              <div className="ml-12 md:ml-0 md:w-1/2 md:pl-14">
+                <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-md hover:shadow-xl hover:border-pink/50 transition-all duration-300 group">
+                  <h3 className="text-2xl font-black text-slate-900 mb-2 group-hover:text-pink transition-colors">
                     Higher Secondary (12th)
                   </h3>
-                  <p className="text-gray-300 text-sm mb-3">
+                  <p className="text-slate-600 font-medium mb-4">
                     JSR Higher Secondary School, Madathukulam, Tiruppur,
                     TamilNadu
                   </p>
-                  <div className="inline-flex items-center gap-4 text-xs font-mono text-purple-400/80 bg-purple-900/20 px-3 py-1 rounded-full">
+                  <div className="inline-flex items-center gap-4 text-xs font-bold text-pink bg-pink/10 px-4 py-2 rounded-full border border-pink/20">
                     <span>79.9%</span>
-                    <span>•</span>
+                    <span className="opacity-50">•</span>
                     <span>2021</span>
                   </div>
                 </div>
@@ -110,20 +110,20 @@ const Education = () => {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="relative flex flex-col md:flex-row gap-8"
             >
-              <div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 w-4 h-4 bg-pink-500 rounded-full shadow-[0_0_10px_#ec4899] z-10 mt-6"></div>
+              <div className="absolute left-[20px] md:left-1/2 -translate-x-[7px] w-5 h-5 bg-maroon rounded-full ring-4 ring-white shadow-md z-10 mt-6 md:translate-x-[-10px]"></div>
 
-              <div className="ml-12 md:ml-0 md:w-1/2 md:pr-12 md:text-right">
-                <div className="glass-panel p-6 border border-pink-500/30 hover:border-pink-500/50 transition-all duration-300 group">
-                  <h3 className="text-xl font-bold text-pink-300 mb-1 group-hover:text-pink-200 transition-colors">
+              <div className="ml-12 md:ml-0 md:w-1/2 md:pr-14 md:text-right">
+                <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-md hover:shadow-xl hover:border-maroon/50 transition-all duration-300 group">
+                  <h3 className="text-2xl font-black text-slate-900 mb-2 group-hover:text-maroon transition-colors">
                     Secondary (10th)
                   </h3>
-                  <p className="text-gray-300 text-sm mb-3">
+                  <p className="text-slate-600 font-medium mb-4">
                     JSR Higher Secondary School, Madathukulam, Tiruppur,
                     TamilNadu
                   </p>
-                  <div className="inline-flex items-center gap-4 text-xs font-mono text-pink-400/80 bg-pink-900/20 px-3 py-1 rounded-full">
+                  <div className="inline-flex items-center gap-4 text-xs font-bold text-maroon bg-maroon/10 px-4 py-2 rounded-full border border-maroon/20">
                     <span>73%</span>
-                    <span>•</span>
+                    <span className="opacity-50">•</span>
                     <span>2019</span>
                   </div>
                 </div>
@@ -138,42 +138,59 @@ const Education = () => {
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
+          className="mt-32"
         >
-          <div className="flex items-center gap-4 mb-8 justify-center md:justify-end">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+          <div className="flex items-center gap-4 mb-12 justify-center md:justify-end">
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter">
               CERTIFICATIONS
             </h2>
-            <FaCertificate className="text-4xl text-purple-400" />
+            <FaCertificate className="text-5xl text-blue" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {certifications.map((cert, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{
-                  y: -10,
-                  rotateX: 5,
-                  boxShadow: "0 10px 30px -10px rgba(188, 19, 254, 0.5)",
-                }}
-                className="glass-panel p-6 text-center cursor-pointer border border-white/5 hover:border-purple-500/50 transition-colors"
-              >
-                <h3 className="text-lg font-bold text-white mb-2">
-                  {cert.title}
-                </h3>
-                <p className="text-purple-400 mb-4">{cert.issuer}</p>
-                <a
-                  href={cert.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-gray-400 hover:text-white transition-colors underline"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {certifications.map((cert, index) => {
+              const colors = [
+                "border-pink hover:bg-pink",
+                "border-blue hover:bg-blue",
+                "border-maroon hover:bg-maroon",
+              ];
+              const textColor = [
+                "text-pink group-hover:text-white",
+                "text-blue group-hover:text-white",
+                "text-maroon group-hover:text-white",
+              ];
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{
+                    y: -10,
+                    boxShadow: "0 20px 40px -10px rgba(0,0,0,0.1)",
+                  }}
+                  className={`bg-white p-8 rounded-2xl text-center cursor-pointer border-2 border-slate-100 hover:border-transparent transition-all duration-300 shadow-sm hover:shadow-xl group ${colors[index % 3].split(" ")[1]}`}
                 >
-                  View Certificate
-                </a>
-              </motion.div>
-            ))}
+                  <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-white transition-colors">
+                    {cert.title}
+                  </h3>
+                  <p
+                    className={`font-semibold mb-6 transition-colors ${textColor[index % 3]}`}
+                  >
+                    {cert.issuer}
+                  </p>
+                  <a
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block text-sm font-bold text-slate-500 bg-slate-100 px-4 py-2 rounded-lg group-hover:bg-white group-hover:text-slate-900 transition-colors"
+                  >
+                    View Certificate
+                  </a>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
       </div>

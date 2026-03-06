@@ -1,11 +1,6 @@
 import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import {
-  Float,
-  PerspectiveCamera,
-  Environment,
-  Stars,
-} from "@react-three/drei";
+import { Float, PerspectiveCamera, Environment } from "@react-three/drei";
 import * as THREE from "three";
 
 const FloatingIcon = ({
@@ -52,11 +47,11 @@ const FloatingIcon = ({
 
         <meshStandardMaterial
           color={color}
-          roughness={0.2}
-          metalness={0.8}
+          roughness={0.1}
+          metalness={0.2}
           wireframe={true} // WIREFRAME creates a very "dev/blueprint" look
           transparent
-          opacity={0.8}
+          opacity={0.4}
         />
       </mesh>
     </Float>
@@ -67,43 +62,34 @@ const Hero3DScene = () => {
   return (
     <Canvas>
       <PerspectiveCamera makeDefault position={[0, 0, 10]} />
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={1} color="#00f3ff" />
-      <pointLight position={[-10, -10, -10]} intensity={1} color="#bc13fe" />
+      <ambientLight intensity={1.5} />
+      <pointLight position={[10, 10, 10]} intensity={2} color="#ec4899" />
+      <pointLight position={[-10, -10, -10]} intensity={2} color="#3b82f6" />
 
-      {/* Building Blocks (Box) - Electric Blue */}
-      <FloatingIcon position={[-4, 2, 0]} color="#4d4dff" geometryType="box" />
+      {/* Building Blocks (Box) - Blue */}
+      <FloatingIcon position={[-4, 2, 0]} color="#3b82f6" geometryType="box" />
 
-      {/* Database/Container (Capsule) - Neon Purple */}
+      {/* Database/Container (Capsule) - Pink */}
       <FloatingIcon
         position={[4, -2, 0]}
-        color="#bc13fe"
+        color="#ec4899"
         geometryType="capsule"
       />
 
-      {/* DevOps/Cycles (Torus) - Neon Cyan */}
+      {/* DevOps/Cycles (Torus) - Red */}
       <FloatingIcon
         position={[-3, -3, 2]}
-        color="#00f3ff"
+        color="#ef4444"
         geometryType="torus"
       />
 
-      {/* Web/Sphere (Dodecahedron) - White */}
+      {/* Web/Sphere (Dodecahedron) - Maroon */}
       <FloatingIcon
         position={[3, 3, -2]}
-        color="#ffffff"
+        color="#800000"
         geometryType="dodecahedron"
       />
 
-      <Stars
-        radius={100}
-        depth={50}
-        count={5000}
-        factor={4}
-        saturation={0}
-        fade
-        speed={1}
-      />
       {/* Environment preset for nice reflections */}
       <Environment preset="city" />
     </Canvas>

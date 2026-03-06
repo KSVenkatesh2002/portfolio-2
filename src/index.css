@@ -3,21 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --bg-color: #0a0a0a;
-  --text-color: #f0f0f0;
-  --primary-color: #00f3ff; /* Neon Cyan */
-  --secondary-color: #bc13fe; /* Neon Purple */
-  --tertiary-color: #4d4dff; /* Electric Blue */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --font-main: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --bg-color: #ffffff;
+  --text-color: #0f172a; /* Slate 900 for sharp text */
+  --text-muted: #64748b; /* Slate 500 */
+  --accent-pink: #ec4899; /* Pink 500 */
+  --accent-maroon: #800000; /* Deep Maroon */
+  --accent-blue: #3b82f6; /* Blue 500 */
+  --accent-red: #ef4444; /* Red 500 */
+
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --font-main: "Inter", system-ui, -apple-system, sans-serif;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* Hardware acceleration for smoother animations */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -27,9 +29,9 @@ body {
   color: var(--text-color);
   font-family: var(--font-main);
   overflow-x: hidden;
-  /* Hide scrollbar for cinematic feel, or customize it */
+  /* Soft grey scrollbar for white theme */
   scrollbar-width: thin;
-  scrollbar-color: var(--primary-color) var(--bg-color);
+  scrollbar-color: #cbd5e1 #f8fafc;
 }
 
 body::-webkit-scrollbar {
@@ -37,11 +39,11 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: var(--bg-color);
+  background: #f8fafc;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
+  background-color: #cbd5e1;
   border-radius: 4px;
 }
 
@@ -49,33 +51,44 @@ body::-webkit-scrollbar-thumb {
   width: 100%;
   min-height: 100vh;
   position: relative;
+  /* Add a subtle noisey texture or solid smooth base */
+  background: var(--bg-color);
 }
 
-/* Utility Animations */
-@keyframes glow {
-  0% {
-    text-shadow: 0 0 5px var(--primary-color);
-  }
-  50% {
-    text-shadow:
-      0 0 20px var(--primary-color),
-      0 0 30px var(--secondary-color);
-  }
-  100% {
-    text-shadow: 0 0 5px var(--primary-color);
-  }
+/* Base Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800; /* Extra bold for typography focus */
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-.glow-text {
-  animation: glow 3s infinite alternate;
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
+a:hover {
+  color: var(--accent-blue);
+}
+
+/* Glass Panel - Adapted for light theme */
 .glass-panel {
   background: var(--glass-bg);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08); /* Soft diffuse shadow */
+  transition: all 0.3s ease;
+}
+.glass-panel:hover {
+  box-shadow: 0 15px 50px -10px rgba(0, 0, 0, 0.12);
 }
 
 /* 3D Transform Utilities */
@@ -91,43 +104,6 @@ body::-webkit-scrollbar-thumb {
   transform: translateZ(10px);
 }
 
-/* Marquee Animation */
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee {
-  animation: marquee linear infinite;
-}
-
-/* Typography Defaults */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: var(--primary-color);
-}
-
-/* Loading Screen - Removed as we now use LoadingScreen.tsx with Framer Motion */
-
 /* App Container Transitions */
 .app-container {
   opacity: 0;
@@ -141,10 +117,10 @@ a:hover {
 /* Navbar */
 .navbar {
   position: fixed;
-  top: 1rem; /* Less top padding on mobile */
+  top: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 95%; /* Wider on mobile */
+  width: 95%;
   max-width: 1200px;
   padding: 0.8rem 1.5rem;
   display: flex;
@@ -154,40 +130,67 @@ a:hover {
 }
 
 .logo {
-  font-size: 1.2rem; /* Slightly smaller logo */
-  font-weight: bold;
-  color: var(--primary-color);
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--text-color);
+  position: relative;
+  z-index: 2;
+}
+.logo::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: var(--accent-pink);
+  border-radius: 50%;
+  transform: translate(-50%, 50%);
+  z-index: -1;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
 }
 
 .nav-links a {
-  margin-left: 1rem; /* Reduced margin */
-  font-size: 0.75rem; /* Smaller font on mobile */
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-color);
   text-transform: uppercase;
   letter-spacing: 0.05rem;
-  opacity: 0.8;
+  position: relative;
 }
 
-/* Desktop styles */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: var(--accent-pink);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
 @media (min-width: 768px) {
   .navbar {
     top: 2rem;
     width: 90%;
     padding: 1rem 2rem;
   }
-
   .logo {
     font-size: 1.5rem;
   }
-
-  .nav-links a {
-    margin-left: 2rem;
-    font-size: 0.9rem;
-    letter-spacing: 0.1rem;
+  .nav-links {
+    gap: 2.5rem;
   }
-}
-
-.nav-links a:hover {
-  opacity: 1;
-  color: var(--primary-color);
-  text-shadow: 0 0 10px var(--primary-color);
+  .nav-links a {
+    font-size: 0.9rem;
+  }
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LoadingScreen from "./components/ui/LoadingScreen";
-import ParticleBackground from "./components/canvas/ParticleBackground";
+import FluidBackground from "./components/canvas/FluidBackground";
 import CustomCursor from "./components/ui/CustomCursor";
 import Hero from "./components/sections/Hero";
 import About from "./components/sections/About";
@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <CustomCursor />
-      <ParticleBackground />
+      <FluidBackground />
 
       <AnimatePresence mode="wait">
         {!isLoaded && (
@@ -36,7 +36,7 @@ function App() {
               y: -500,
               transition: { duration: 2.8, ease: [0.76, 0, 0.9, 1] },
             }} // Curtain up effect
-            className="fixed inset-0 z-[9999]"
+            className="fixed inset-0 z-[9999] bg-white"
           >
             <LoadingScreen onComplete={() => setIsLoaded(true)} />
           </motion.div>
@@ -45,15 +45,23 @@ function App() {
 
       <div className={`app-container ${isLoaded ? "visible" : ""}`}>
         <nav className="navbar glass-panel">
-          <div className="logo glow-text">V K S</div>
-          <div className="nav-links">
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+          <div className="logo font-black text-2xl tracking-tighter mix-blend-difference text-white">
+            V K S
+          </div>
+          <div className="nav-links bg-white/50 px-6 py-2 rounded-full backdrop-blur-md border border-black/5 shadow-sm">
+            <a href="#about" className="hover:text-pink transition-colors">
+              About
+            </a>
+            <a href="#projects" className="hover:text-blue transition-colors">
+              Projects
+            </a>
+            <a href="#contact" className="hover:text-red transition-colors">
+              Contact
+            </a>
           </div>
         </nav>
 
-        <main>
+        <main className="relative z-10 flex flex-col gap-24 md:gap-32 pb-32">
           <Hero />
           <About />
           <Projects />

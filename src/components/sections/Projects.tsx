@@ -42,35 +42,35 @@ const Projects = () => {
     <section id="projects" className="py-32 relative overflow-hidden">
       {/* Background Pattern */}
       <div
-        className="absolute inset-0 opacity-5 pointer-events-none"
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+            "radial-gradient(circle at 1px 1px, black 1px, transparent 0)",
           backgroundSize: "40px 40px",
         }}
       />
 
       {/* Gradient Orbs */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-purple-600/20 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-cyan-600/20 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-pink/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500 mb-6">
-            FEATURED PROJECTS
+          <h2 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter mb-6">
+            FEATURED <span className="text-blue">PROJECTS</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+          <p className="text-slate-500 max-w-2xl mx-auto text-lg font-medium">
             A showcase of my technical journey, featuring full-stack
             applications and real-time systems.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12">
           {projectsData.map((project, index) => (
             <ProjectCard key={index} {...project} index={index} />
           ))}

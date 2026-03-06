@@ -56,38 +56,45 @@ const SkillCard = ({
         <div
           className={`
             relative flex flex-col items-center justify-center p-4 rounded-xl
-            backdrop-blur-md border border-white/10 shadow-lg transition-all duration-300 ease-out
-            cursor-pointer pointer-events-auto
-            ${hovered ? "scale-110 bg-white/20 border-white/30 z-50" : "bg-white/5 grayscale-[0.2] hover:grayscale-0"}
+            backdrop-blur-md transition-all duration-300 ease-out
+            cursor-pointer pointer-events-auto text-slate-900 border
+            ${hovered ? "scale-110 bg-white border-white/50 z-50 shadow-2xl" : "bg-white/50 border-white/20 shadow-md"}
           `}
           style={{
             width: "140px",
             height: "160px",
             transformStyle: "preserve-3d",
             boxShadow: hovered
-              ? `0 0 30px ${skill.color}60, 0 0 10px ${skill.color}40`
-              : "0 4px 6px rgba(0,0,0,0.1)",
+              ? `0 20px 40px ${skill.color}50, 0 0 10px ${skill.color}30`
+              : "0 4px 10px rgba(0,0,0,0.05)",
           }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
           {/* Icon */}
           <div
-            className="text-6xl mb-4 transition-colors duration-300"
-            style={{ color: hovered ? skill.color : "#ffffff" }}
+            className="text-6xl mb-4 transition-all duration-300"
+            style={{
+              color: skill.color,
+              filter: hovered ? "none" : "grayscale(0.5) opacity(0.8)",
+              transform: hovered ? "translateZ(20px)" : "translateZ(0)",
+            }}
           >
             <skill.icon />
           </div>
 
           {/* Text */}
-          <h3 className="text-white font-bold text-base tracking-wide text-center">
+          <h3
+            className="font-bold text-base tracking-wide text-center"
+            style={{ transform: "translateZ(10px)" }}
+          >
             {skill.name}
           </h3>
 
           {/* Subtle glow effect on hover */}
           {hovered && (
             <div
-              className="absolute inset-0 rounded-xl -z-10 opacity-50 blur-xl"
+              className="absolute inset-0 rounded-xl -z-10 opacity-30 blur-2xl"
               style={{
                 background: `radial-gradient(circle at center, ${skill.color}, transparent 70%)`,
               }}
@@ -108,12 +115,12 @@ const SkillsGalaxy = () => {
     () => [
       { name: "React", icon: FaReact, color: "#61DAFB" },
       { name: "Node.js", icon: FaNodeJs, color: "#339933" },
-      { name: "Three.js", icon: SiThreedotjs, color: "#ffffff" },
+      { name: "Three.js", icon: SiThreedotjs, color: "#000000" },
       { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-      { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
+      { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
       { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
       { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
-      { name: "Express", icon: SiExpress, color: "#ffffff" },
+      { name: "Express", icon: SiExpress, color: "#000000" },
       { name: "Tailwind", icon: SiTailwindcss, color: "#06B6D4" },
       { name: "Redux", icon: SiRedux, color: "#764ABC" },
       { name: "Git", icon: FaGitAlt, color: "#F05032" },
@@ -161,9 +168,9 @@ const Skills3D = () => {
       <Canvas dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
         <PerspectiveCamera makeDefault position={[0, 0, 16]} fov={50} />
 
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={1} />
         <pointLight position={[10, 10, 10]} intensity={1} />
-        <pointLight position={[-10, 5, -10]} intensity={0.5} color="#4c1d95" />
+        <pointLight position={[-10, 5, -10]} intensity={0.5} color="#ec4899" />
 
         <SkillsGalaxy />
 
